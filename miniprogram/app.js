@@ -17,3 +17,28 @@ App({
     this.globalData = {}
   }
 })
+
+
+!function(){
+  var PageTmp = Page;
+  Page = function (pageConfig) {
+    // 设置全局默认分享
+    pageConfig = Object.assign({
+      onShareAppMessage:function () {
+        return {
+          title: '汪汪小助手的分享',
+          imageUrl: '/images/cm1.jpeg',
+          path: '/pages/index/index'
+        };
+      },
+      onShareTimeline:function(){
+        return {
+          title: '汪汪小助手的分享',
+          imageUrl: '/images/cm1.jpeg',
+          path: '/pages/index/index'
+        };
+      }
+    },pageConfig);
+    PageTmp(pageConfig);
+  };
+}();

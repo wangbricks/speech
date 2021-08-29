@@ -1,0 +1,96 @@
+<!--index.wxml-->
+<wxs module="util" src="../../util/tool.wxs"></wxs>
+<view class="info-container">
+  <!-- 民宿图片-->
+  <view class="swiper-container">
+    <swiper 
+      style="height:100%"
+      indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" 
+      interval="{{interval}}" 
+      duration="{{duration}}"
+    >
+      <block wx:for="{{background}}" wx:key="unique">
+        <swiper-item>
+          <image style="width:100%;height:100%" src="{{item.url}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 视屏 -->
+  <view style="display:flex;justify-content:center;margin-top:30rpx;margin-bottom:40rpx">
+    <video 
+      src="https://ugcws.video.gtimg.com/uwMROfz2r5zIIaQXGdGnC2dfJ7wFnocHIQhYHck9TxbRMoti/u0524qqbf9p.p712.1.mp4?sdtfrom=v1010&guid=245a0a59f5aa22e7357a4a6342b14054&vkey=933E4E6CDF0163863EA0143F38A71D2141C08D4BA368F03A8A38A23BCBAF18B4161CD79D8679B16505A852E9DABF201F943A007B324BD11A1628E4AC9004F0613A7D4F8D941917BCA60635EF32D051946EC9C1AB5CEC1CA65592E6E347DF21F30144BF3816862BB8EBAF251DEB80B9A8BAFD7300C1D9946DE9CFD1303C6554C1F93FB69D8ABE3BF8" 
+      controls
+      style="width: 90%; height: 225px" 
+    />
+  </view>
+
+
+  <!--介绍 -->
+  <view style="font-size:24rpx;white-space: break-spaces;">
+    {{desc}}
+  </view>
+
+  <view style="height:20rpx;background:#ece9e9;margin-top:40rpx"></view>
+
+  <!--概览 -->
+  <view style="padding:20rpx 40rpx;">
+    <view style="margin-top:30rpx;margin-bottom:40rpx"> 房源概览 </view>      
+    <view style="font-size:20rpx;display:flex;flex-direction:row;justify-content:space-between">
+      <view class="overvie-container">
+        <mp-icon icon="sticker" color="black" size="{{25}}"></mp-icon>
+        <view class="item"> 整个房源，视野开阔</view>
+      </view>
+      <view class="overvie-container">
+        <mp-icon icon="lock" color="black" size="{{25}}"></mp-icon>
+        <view class="item"> 2室一厅一卫 </view>
+      </view>
+      <view class="overvie-container">
+        <mp-icon icon="add-friends" color="black" size="{{25}}"></mp-icon>
+        <view class="item"> 两张床，可住4人 </view>
+      </view>
+    </view>
+  {{overview}}
+  </view>
+
+
+
+  <!-- 天气 -->
+  <view style="height:300rpx;margin-top:40rpx">
+    <text>
+      崇明天气预报：空气质量   <text style="color:green">{{weatherInfo.air}}</text> 
+    </text>
+    <view style="display:flex">
+      <text style="font-size:20rpx" class="{{util.addClass(weatherInfo.today.info)}}">
+        今天
+        {{weatherInfo.today.info}}
+        {{weatherInfo.today.temperature}}
+      </text>
+      <block wx:for="{{weatherInfo.detail}}" wx:key="unique">
+        <text style="font-size:20rpx">
+          <text class="{{util.addClass(item.info)}}">
+            {{item.day}}
+            {{item.info}}
+            {{item.temperature}}
+          </text>
+        </text>
+      </block>  
+    </view>
+  </view>
+
+  <!-- 地图 -->
+  <view style="margin-top:40rpx;margin-bottom:100rpx;display:flex;justify-content:center;">
+    <map 
+      style="width:100%;height:600rpx"
+      name="holidayhouse" 
+      subkey="YOMBZ-HBNLV-7FXPW-UROKF-CNLYV-YXBAY" 
+      longitude="121.4615034005432"
+      latitude="31.79314669757488"
+      markers="{{markers}}"
+      >
+    </map>
+  </view>
+
+</view>

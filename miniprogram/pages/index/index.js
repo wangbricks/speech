@@ -3,6 +3,38 @@ const app = getApp()
 
 Page({
   data: {
+    posterList:[
+      {
+        url:'../../images/cm1.jpeg'
+      },
+      {
+        url:'../../images/cm2.jpeg'
+      },
+      {
+        url:'../../images/cm3.jpeg'
+      },
+      {
+        url:'../../images/cm4.jpeg'
+      }
+    ],
+    holidayHouseList:[
+      {
+        id:1,
+        poster:'../../images/cm5.jpeg',
+        title:'崇明岛绿地长岛B区',
+        tag:'风景优美，上海之肺，自然风光，森林公园',
+        price:'200',
+        type:'民宿'
+      },
+      {
+        id:2,
+        poster:'../../images/cm6.jpeg',
+        title:'崇明岛绿地长岛E区',
+        tag:'上海之肺，自然风景，湿地公园',
+        price:'200',
+        type:'民宿'
+      }
+    ],
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     hasUserInfo: false,
@@ -14,6 +46,7 @@ Page({
   },
 
   onLoad: function() {
+    
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -26,7 +59,12 @@ Page({
       })
     }
   },
-
+  navigateTo(params){
+    const dataset = params.currentTarget.dataset
+    wx.navigateTo({
+      url: '../holidayInfo/index?id={{dataset.info.id}}'
+    })
+  },
   getUserProfile() {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
@@ -120,5 +158,4 @@ Page({
       }
     })
   },
-
 })

@@ -1,0 +1,22 @@
+function addClass(info) {
+  if(!info) return 
+  console.log('infotype-----',typeof info)
+  console.log('infotype-----ssssss', info)
+  // console.log('info',String)
+  if( typeof info === 'string' ){
+    if(info.toString().indexOf('晴') > -1 ){
+      return 'wdy_l_3d w13'
+    }else if(info.toString().indexOf('雨')>-1){
+      return 'wdy_l_3d w11'
+    }else if(info.toString().indexOf('雪')>-1){
+      return 'wdy_l_3d w12'
+    }else{
+      return 'wdy_l_3d w14'
+    }
+  }
+
+ }
+ 
+ module.exports = {
+  addClass: addClass
+ }
