@@ -19,9 +19,9 @@
   </view>
 
   <!-- 视屏 -->
-  <view style="display:flex;justify-content:center;margin-top:30rpx;margin-bottom:40rpx">
+  <view wx:if="renderInfo.video" style="display:flex;justify-content:center;margin-top:30rpx;margin-bottom:40rpx">
     <video 
-      src="https://ugcws.video.gtimg.com/uwMROfz2r5zIIaQXGdGnC2dfJ7wFnocHIQhYHck9TxbRMoti/u0524qqbf9p.p712.1.mp4?sdtfrom=v1010&guid=245a0a59f5aa22e7357a4a6342b14054&vkey=933E4E6CDF0163863EA0143F38A71D2141C08D4BA368F03A8A38A23BCBAF18B4161CD79D8679B16505A852E9DABF201F943A007B324BD11A1628E4AC9004F0613A7D4F8D941917BCA60635EF32D051946EC9C1AB5CEC1CA65592E6E347DF21F30144BF3816862BB8EBAF251DEB80B9A8BAFD7300C1D9946DE9CFD1303C6554C1F93FB69D8ABE3BF8" 
+      src="{{renderInfo.video}}" 
       controls
       style="width: 90%; height: 225px" 
     />
@@ -37,22 +37,22 @@
 
   <!--概览 -->
   <view style="padding:20rpx 40rpx;">
-    <view style="margin-top:30rpx;margin-bottom:40rpx"> 房源概览 </view>      
+    <view style="margin-top:30rpx;margin-bottom:40rpx"> {{renderInfo.type==='民宿'?'房源概览':'摊位概览'}} </view>      
     <view style="font-size:20rpx;display:flex;flex-direction:row;justify-content:space-between">
       <view class="overvie-container">
         <mp-icon icon="sticker" color="black" size="{{25}}"></mp-icon>
-        <view class="item"> 整个房源，视野开阔</view>
+        <view class="item"> {{renderInfo.overview[0]}}</view>
       </view>
       <view class="overvie-container">
         <mp-icon icon="lock" color="black" size="{{25}}"></mp-icon>
-        <view class="item"> 2室一厅一卫 </view>
+        <view class="item">{{renderInfo.overview[1]}}</view>
       </view>
       <view class="overvie-container">
         <mp-icon icon="add-friends" color="black" size="{{25}}"></mp-icon>
-        <view class="item"> 两张床，可住4人 </view>
+        <view class="item"> {{renderInfo.overview[2]}} </view>
       </view>
     </view>
-      <!-- 房东信息 -->
+    <!-- 房东信息 -->
     <view class="boss-container">
       <mp-cells ext-class="my-cells" title="房东信息">
         <mp-cell wx:for="{{renderInfo.boss}}" style="font-size:26rpx" >

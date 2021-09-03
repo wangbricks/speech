@@ -7,26 +7,6 @@ Page({
   data: {
     weatherInfo:'',
     admin:true,
-    slideHerButtons:[
-      {
-        text:'聊天',
-        src:''
-      },
-      {
-        text:'电话',
-        src:'18701882658'
-      }
-    ],
-    slideHisButtons:[
-      {
-        text:'聊天',
-        src:''
-      },
-      {
-        text:'电话',
-        src:'13817372369'
-      }
-    ],
     renderInfo:{},
     indicatorDots: true,
     vertical: false,
