@@ -14,6 +14,12 @@
   <view>
     <text class="page-container"> 上海摊位、崇明岛民宿，短租、长租 </text>
   </view>
+  <!-- 类别  -->
+  <view class="category">
+    <text style="margin-right:30rpx">搜索</text>
+    <button bindtap="handleMinsu" class="mini-btn" type="{{activeButton==='minsu'?'primary':'default'}}" size="mini">民宿</button>
+    <button bindtap="handletanwei" class="mini-btn" type="{{activeButton==='tanwei'?'warn':'default'}}" size="mini">摊位</button>
+  </view>
   <!-- 民宿列表  url="../openapi/openapi"-->
   <view class="holidayHouse">
     <view wx:for="{{holidayHouseList}}" wx:key="unique" class="holidayHouse-item-container">
@@ -25,7 +31,7 @@
             src="{{item.poster}}"
             show-menu-by-longpress
           ></image>
-          <text class="holidayHouse-poster_type">{{item.type}}</text>
+          <text class="{{activeButton==='minsu'?'holidayHouse-poster_type holidayHouse-poster_minsu':'holidayHouse-poster_type holidayHouse-poster_tanwei'}}">{{item.type}}</text>
         </view>
         <text class="holidayHouse-item holidayHouse-item-text  holidayHouse-title">
           {{item.title}}
@@ -34,7 +40,7 @@
           {{item.tag}}
         </text>
         <text class="holidayHouse-item holidayHouse-item-text holidayHouse-price">
-          ¥ {{item.price}} <text style="color:#222;font-weight:normal"> / 晚</text>
+          ¥ {{item.price}} 
         </text>
       <!-- </navigator> -->
     </view>

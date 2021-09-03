@@ -12,7 +12,24 @@ page {
   text-align: center;
   height: 400rpx;
 }
-
+.category{
+  display: flex;
+  align-items: baseline;
+  padding-left: 60rpx;
+  padding-right: 60rpx;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 30rpx;
+  margin-top: 30rpx;
+}
+.category button{
+  margin: 0 30rpx 0 0 !important;
+}
+.category button[type=default]{
+  color: #504a4a;
+  background-color: #F8F8F8;
+  font-weight: 400;
+} 
 .page-container{
   display: block;
   height:100rpx;
@@ -22,6 +39,7 @@ page {
   padding-left: 60rpx;
   padding-right: 60rpx;
   box-sizing: border-box;
+  width: 100%;
 }
 .holidayHouse-poster{
   width: 100%;
@@ -31,7 +49,6 @@ page {
   border: 1 rpx #ccc solid;
   margin-bottom: 60rpx;
   background-color: #fff;
-
 }
 
 .holidayHouse-poster_container{
@@ -43,9 +60,15 @@ page {
 }
 .holidayHouse-poster_type{
   position: absolute;
-  top:0;
-  right:10rpx;
-  color:gold;
+  top:20rpx;
+  left:20rpx;
+  font-weight: bold;
+}
+.holidayHouse-poster_minsu{
+  color:#1aad19;
+}
+.holidayHouse-poster_tanwei{
+  color:#e64340;
 }
 .holidayHouse-item{
   display: inline-block; 

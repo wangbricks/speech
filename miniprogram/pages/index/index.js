@@ -3,6 +3,8 @@ const app = getApp()
 
 Page({
   data: {
+    // minsu tanwei
+    activeButton:'minsu',
     posterList: [{
         url: 'cloud://dev-8gjgj4o3b962267e.6465-dev-8gjgj4o3b962267e-1305839904/images/cm1.jpeg'
       },
@@ -26,11 +28,28 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') // 如需尝试获取用户信息可改为false
   },
+  // 搜索民宿
+  handleMinsu(){
+    this.setData({
+      activeButton:'minsu'
+    })
+    this.getRenderlist('民宿')
+  },
+  // 搜索摊位
+  handletanwei(){
+    this.setData({
+      activeButton:'tanwei'
+    })
+    this.getRenderlist('摊位')  
+  },
   // 获取民宿列表
-  getRenderlist() {
+  getRenderlist(type) {
     const db = wx.cloud.database()
-    db.collection('rendercollection').where({}).get({
+    db.collection('rendercollection').where({
+      type
+    }).get({
       success: res => {
+        console.log('res 数据库',res)
         this.setData({
           holidayHouseList:res.data
         })
@@ -58,7 +77,7 @@ Page({
       })
     }
     if (this.getRenderlist) {
-      this.getRenderlist()
+      this.getRenderlist('民宿')
     }
   },
 
