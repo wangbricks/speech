@@ -5,7 +5,7 @@ Page({
   data: {
     posterList:[
       {
-        url:'../../images/cm1.jpeg'
+        url:'cloud://dev-8gjgj4o3b962267e.6465-dev-8gjgj4o3b962267e-1305839904/cm1.jpeg'
       },
       {
         url:'../../images/cm2.jpeg'
@@ -63,6 +63,11 @@ Page({
     const dataset = params.currentTarget.dataset
     wx.navigateTo({
       url: '../holidayInfo/index?id={{dataset.info.id}}'
+    })
+  },
+  adminRoot(){
+    wx.navigateTo({
+      url: '../originIndex/index'
     })
   },
   getUserProfile() {

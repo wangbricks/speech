@@ -29,6 +29,15 @@ Component({
   },
 
   methods: {
+    phoneCall(e){
+      try{
+        if(Number(e.currentTarget.dataset.info)){
+          wx.makePhoneCall({
+            phoneNumber:e.currentTarget.dataset.info
+          })
+        }
+      }catch(e){}
+    },
     onGetUserInfo(e) {
       this.properties.onGetUserInfo(e)
     },
@@ -49,12 +58,13 @@ Component({
         await this.initOpenID()
 
         const { envId, collection } = this.properties
+        console.log('this.properties',this.properties)
         this.db = wx.cloud.database({
           env: envId,
         })
         const db = this.db
         const _ = db.command
-
+        // 获取数据库数据 本地存储数据一星期，之后同步到数据库
         const { data: initList } = await db.collection(collection).where(this.mergeCommonCriteria()).orderBy('sendTimeTS', 'desc').get()
 
         console.log('init query chats', initList)
@@ -63,7 +73,7 @@ Component({
           chats: initList.reverse(),
           scrollTop: 10000,
         })
-
+        console.log('initList',initList)
         this.initWatch(initList.length ? {
           sendTimeTS: _.gt(initList[initList.length - 1].sendTimeTS),
         } : {})
@@ -73,7 +83,7 @@ Component({
     async initOpenID() {
       return this.try(async () => {
         const openId = await this.getOpenID()
-
+        console.log('openId',openId)
         this.setData({
           openId,
         })

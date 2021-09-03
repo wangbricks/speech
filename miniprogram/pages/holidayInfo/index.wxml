@@ -52,9 +52,38 @@
         <view class="item"> 两张床，可住4人 </view>
       </view>
     </view>
-  {{overview}}
+      <!-- 房东信息 -->
+    <view>
+      <mp-cells ext-class="my-cells" title="房东信息">
+        <mp-slideview 
+          style="font-size:26rpx" 
+          buttons="{{slideHerButtons}}" 
+          bindbuttontap="slideButtonTap"
+          data-info="{{slideHerButtons}}"
+        >
+           <mp-cell 
+            value="梁女士" 
+            footer="和她联系" 
+            bindbuttontap="concatHer" 
+            >
+           </mp-cell>
+        </mp-slideview>
+        <mp-slideview 
+          style="font-size:26rpx" 
+          buttons="{{slideHisButtons}}" 
+          bindbuttontap="slideButtonTap"
+          data-info="{{slideHisButtons}}"
+          >
+           <mp-cell 
+              value="王先生" 
+              footer="和他联系" 
+              bindbuttontap="concatHer"
+            >
+           </mp-cell>
+        </mp-slideview>
+      </mp-cells>
+    </view>
   </view>
-
 
 
   <!-- 天气 -->
@@ -92,5 +121,6 @@
       >
     </map>
   </view>
+
 
 </view>

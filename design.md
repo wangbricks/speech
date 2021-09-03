@@ -1,7 +1,7 @@
 # 民宿小程序
 
 ## 民宿列表
-+ item
++ item 【编辑 数据库】
   + poster
   + title
   + 特色
@@ -10,17 +10,19 @@
 + 图片展示
   + 房间信息 
     + 管理员可以编辑
-+ 地图展示 [done]
++ 地图展示 [done] 2021/08/30
   + 周边
-+ 天气展示 [done]
++ 天气展示 [done] 2021/08/30
   + 云函数
-+ 房东信息
++ 房东信息 [done] 2021/08/31
   + 联系房东
+  + 访问数据库每日限制：本地缓存数据 [优化]
+  + 利用数据库的实时监听能力，前端onchange，渲染页面
 + 留言信息
-+ 分享 [done]
++ 分享 [done] 2021/08/30
   + 好友
   + 朋友圈
-
++ 云函数
 
 
 
@@ -54,3 +56,8 @@ https://www.cnblogs.com/wujiaxing/p/14255368.html
 + 分享
 onShareAppMessage: function () {}
 https://blog.csdn.net/harmsworth2016/article/details/109266335
+
++ 联系房东
+https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database/realtime.html
+聊天室
+https://gitee.com/Kindear/wx-cloud-im

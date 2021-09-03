@@ -45,7 +45,7 @@
         <block wx:else>
           <view class="text-wrapper">
             <view class="loading" wx:if="{{item.writeStatus === 'pending'}}">···</view>
-            <view class="text-content">{{item.textContent}}</view>
+            <view class="text-content" bindtap="phoneCall" data-info="{{item.textContent}}">{{item.textContent}}</view>
           </view>
         </block>
       </view>

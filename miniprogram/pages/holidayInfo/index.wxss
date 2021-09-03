@@ -3,7 +3,7 @@
 }
 .swiper-container{
   font-size: 26rpx;
-  height: 350rpx;
+  height: 400rpx;
 }
 .swiper-container image{
   height: 100%;

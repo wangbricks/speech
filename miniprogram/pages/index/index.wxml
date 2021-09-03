@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <!-- 民宿图片-->
-<view class="swiper-container">
+<view class="swiper-container" bindtap="adminRoot">
   <swiper autoplay style="height:100%">
     <block wx:for="{{posterList}}" wx:key="unique">
       <swiper-item>

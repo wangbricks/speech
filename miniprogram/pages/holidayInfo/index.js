@@ -7,6 +7,26 @@ Page({
   data: {
     weatherInfo:'',
     admin:true,
+    slideHerButtons:[
+      {
+        text:'聊天',
+        src:''
+      },
+      {
+        text:'电话',
+        src:'18701882658'
+      }
+    ],
+    slideHisButtons:[
+      {
+        text:'聊天',
+        src:''
+      },
+      {
+        text:'电话',
+        src:'13817372369'
+      }
+    ],
     background: [
       {
        url:'../../images/cm5.jpeg'
@@ -118,6 +138,11 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+  slideButtonTap:function(e){
+    wx.navigateTo({
+      url: '../im/room/room',
+    })
   },
 
 })
