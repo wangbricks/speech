@@ -1,7 +1,7 @@
 # 民宿小程序
 
 ## 民宿列表
-+ item 【编辑 数据库】
++ item 【编辑 数据库】[done]
   + poster
   + title
   + 特色
