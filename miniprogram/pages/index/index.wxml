@@ -18,7 +18,7 @@
   <view class="holidayHouse">
     <view wx:for="{{holidayHouseList}}" wx:key="unique" class="holidayHouse-item-container">
       <view bindtap="navigateTo" data-info="{{item}}">
-      <!-- <navigator url="../holidayInfo/index?id={{item.id}}" open-type="navigate"> -->
+      <!-- <navigator url="../holidayInfo/index?id={{item._id}}" open-type="navigate"> -->
         <view class='holidayHouse-poster_container'>
           <image 
             class="holidayHouse-poster" 

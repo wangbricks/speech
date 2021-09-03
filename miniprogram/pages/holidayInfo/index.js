@@ -27,44 +27,42 @@ Page({
         src:'13817372369'
       }
     ],
-    background: [
-      {
-       url:'../../images/cm5.jpeg'
-      },
-      {
-        url:'../../images/cm6.jpeg'
-      },
-      {
-        url:'../../images/cm7.jpeg'
-      },
-      {
-        url:'../../images/cm8.jpeg'
-      }
-    ],
+    renderInfo:{},
     indicatorDots: true,
     vertical: false,
     autoplay: true,
     interval: 2000,
     duration: 500,
-    desc:'绿地长岛，背依世界级生态岛崇明岛。由世界500强绿地集团倾力打造。在借鉴了纽约、温哥华等滨水宜居城市和世界各大度假海岛之后，以大融合的理念打造生态自然与休闲旅游滨水度假生活于一体的全龄段旅游度假目的地，为上海乃至整个长三角，提供一方诗意栖居的自然净土与理想港湾。世界级生态岛崇明岛整岛，规划80%为绿化用地，森林覆盖率高达24%，被誉为中国的“长寿之乡”，西沙湿地、东滩、东平森林国家公园分布岛上，原滋原味自然绿色源乡。',
-    markers:[{
-      id:1,
-      longitude:"121.4615034005432",
-      latitude:"31.79314669757488",
-      callout:{
-        content:"民宿地址在绿地长岛",
-        fontSize:16,
-        padding:20
-      },
-    }]
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      data:options
+    this.getRenderInfo(options)
+    this.getWeather()
+  },
+  // 获取民宿信息
+  getRenderInfo(options){
+    const db = wx.cloud.database()
+    db.collection('renderinfo').where({
+      id:options.id
+    }).get({
+      success: res => {
+        this.setData({
+          renderInfo:res.data[0]
+        })
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
     })
+  },
+  // 获取天气预报
+  getWeather(){
     const _self= this
     // 调用https://weather.three5.xyz
     wx.request({
@@ -93,7 +91,6 @@ Page({
           },
           detail:list
         }
-        console.log('final',final)
         _self.setData({weatherInfo:final})
       }
     })
@@ -144,5 +141,14 @@ Page({
       url: '../im/room/room',
     })
   },
-
+  phoneCall:function(e){
+    try{
+      if(Number(e.currentTarget.dataset.info.phone)){
+        wx.makePhoneCall({
+          phoneNumber:e.currentTarget.dataset.info.phone
+        })
+      }
+    }catch(e){
+    }
+  }
 })

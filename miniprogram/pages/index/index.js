@@ -3,38 +3,20 @@ const app = getApp()
 
 Page({
   data: {
-    posterList:[
-      {
-        url:'cloud://dev-8gjgj4o3b962267e.6465-dev-8gjgj4o3b962267e-1305839904/cm1.jpeg'
+    posterList: [{
+        url: 'cloud://dev-8gjgj4o3b962267e.6465-dev-8gjgj4o3b962267e-1305839904/images/cm1.jpeg'
       },
       {
-        url:'../../images/cm2.jpeg'
+        url: 'cloud://dev-8gjgj4o3b962267e.6465-dev-8gjgj4o3b962267e-1305839904/images/cm2.jpeg'
       },
       {
-        url:'../../images/cm3.jpeg'
+        url: 'cloud://dev-8gjgj4o3b962267e.6465-dev-8gjgj4o3b962267e-1305839904/images/cm3.jpeg'
       },
       {
-        url:'../../images/cm4.jpeg'
+        url: 'cloud://dev-8gjgj4o3b962267e.6465-dev-8gjgj4o3b962267e-1305839904/images/cm4.jpeg'
       }
     ],
-    holidayHouseList:[
-      {
-        id:1,
-        poster:'../../images/cm5.jpeg',
-        title:'崇明岛绿地长岛B区',
-        tag:'风景优美，上海之肺，自然风光，森林公园',
-        price:'200',
-        type:'民宿'
-      },
-      {
-        id:2,
-        poster:'../../images/cm6.jpeg',
-        title:'崇明岛绿地长岛E区',
-        tag:'上海之肺，自然风景，湿地公园',
-        price:'200',
-        type:'民宿'
-      }
-    ],
+    holidayHouseList: [],
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     hasUserInfo: false,
@@ -44,9 +26,26 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') // 如需尝试获取用户信息可改为false
   },
+  // 获取民宿列表
+  getRenderlist() {
+    const db = wx.cloud.database()
+    db.collection('rendercollection').where({}).get({
+      success: res => {
+        this.setData({
+          holidayHouseList:res.data
+        })
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
+  },
+  onLoad: function () {
 
-  onLoad: function() {
-    
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -58,14 +57,18 @@ Page({
         canIUseGetUserProfile: true,
       })
     }
+    if (this.getRenderlist) {
+      this.getRenderlist()
+    }
   },
-  navigateTo(params){
-    const dataset = params.currentTarget.dataset
+
+  navigateTo(params) {
+    const dataset = params.currentTarget.dataset;
     wx.navigateTo({
-      url: '../holidayInfo/index?id={{dataset.info.id}}'
+      url: `../holidayInfo/index?id=${dataset.info.id}`
     })
   },
-  adminRoot(){
+  adminRoot() {
     wx.navigateTo({
       url: '../originIndex/index'
     })
@@ -84,7 +87,7 @@ Page({
     })
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
@@ -95,7 +98,7 @@ Page({
     }
   },
 
-  onGetOpenid: function() {
+  onGetOpenid: function () {
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
@@ -129,7 +132,7 @@ Page({
         })
 
         const filePath = res.tempFilePaths[0]
-        
+
         // 上传图片
         const cloudPath = `my-image${filePath.match(/\.[^.]+?$/)[0]}`
         wx.cloud.uploadFile({
@@ -141,7 +144,7 @@ Page({
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
-            
+
             wx.navigateTo({
               url: '../storageConsole/storageConsole'
             })

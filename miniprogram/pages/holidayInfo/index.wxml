@@ -10,9 +10,9 @@
       interval="{{interval}}" 
       duration="{{duration}}"
     >
-      <block wx:for="{{background}}" wx:key="unique">
+      <block wx:for="{{renderInfo.background}}" wx:key="unique">
         <swiper-item>
-          <image style="width:100%;height:100%" src="{{item.url}}"></image>
+          <image style="width:100%;height:100%" src="{{item}}"></image>
         </swiper-item>
       </block>
     </swiper>
@@ -30,7 +30,7 @@
 
   <!--介绍 -->
   <view style="font-size:24rpx;white-space: break-spaces;">
-    {{desc}}
+    {{renderInfo.desc}}
   </view>
 
   <view style="height:20rpx;background:#ece9e9;margin-top:40rpx"></view>
@@ -53,9 +53,16 @@
       </view>
     </view>
       <!-- 房东信息 -->
-    <view>
+    <view class="boss-container">
       <mp-cells ext-class="my-cells" title="房东信息">
-        <mp-slideview 
+        <mp-cell wx:for="{{renderInfo.boss}}" style="font-size:26rpx" >
+            <view>{{item.name}}</view>
+            <view slot="footer">
+              <button bindtap="slideButtonTap">聊天</button>
+              <button bindtap="phoneCall" data-info="{{item}}">电话</button>
+            </view>
+        </mp-cell>
+        <!-- <mp-slideview 
           style="font-size:26rpx" 
           buttons="{{slideHerButtons}}" 
           bindbuttontap="slideButtonTap"
@@ -67,20 +74,7 @@
             bindbuttontap="concatHer" 
             >
            </mp-cell>
-        </mp-slideview>
-        <mp-slideview 
-          style="font-size:26rpx" 
-          buttons="{{slideHisButtons}}" 
-          bindbuttontap="slideButtonTap"
-          data-info="{{slideHisButtons}}"
-          >
-           <mp-cell 
-              value="王先生" 
-              footer="和他联系" 
-              bindbuttontap="concatHer"
-            >
-           </mp-cell>
-        </mp-slideview>
+        </mp-slideview> -->
       </mp-cells>
     </view>
   </view>
@@ -117,7 +111,7 @@
       subkey="YOMBZ-HBNLV-7FXPW-UROKF-CNLYV-YXBAY" 
       longitude="121.4615034005432"
       latitude="31.79314669757488"
-      markers="{{markers}}"
+      markers="{{[renderInfo.markers]}}"
       >
     </map>
   </view>

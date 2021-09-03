@@ -61,3 +61,11 @@ https://blog.csdn.net/harmsworth2016/article/details/109266335
 https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database/realtime.html
 聊天室
 https://gitee.com/Kindear/wx-cloud-im
+电话
+try{
+  if(Number(e.currentTarget.dataset.info)){
+    wx.makePhoneCall({
+      phoneNumber:e.currentTarget.dataset.info
+    })
+  }
+}catch(e){}
